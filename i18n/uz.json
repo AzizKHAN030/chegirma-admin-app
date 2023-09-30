@@ -1,0 +1,23 @@
+{
+  "Index": {
+    "Hello world": "Salom dunyo",
+    "Settings": "Sozlash",
+    "Merchants": "Savdogarlar",
+    "Dashboard": "Asosiy",
+    "Uzbek": "O'zbekcha",
+    "English": "Ingilizcha",
+    "Russian": "Ruscha",
+    "Select language": "Tilni tanlash",
+    "Light": "Yorqin",
+    "Dark": "Qora",
+    "System": "Sistema",
+    "Login": "Login",
+    "Enter your username and password to log in": "Kirish uchun login va parolni kiriting.",
+    "Username": "Login",
+    "Password": "Parol",
+    "Sign in": "Kirish",
+    "Sign up": "Registratsiya",
+    "Log out": "Chiqish",
+    "Profile": "Profil"
+  }
+}

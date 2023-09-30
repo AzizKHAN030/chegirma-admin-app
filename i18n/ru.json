@@ -1,0 +1,23 @@
+{
+  "Index": {
+    "Hello world": "Привет мир",
+    "Settings": "Настройки",
+    "Merchants": "Клиенты",
+    "Dashboard": "Основное",
+    "Uzbek": "Узбекский",
+    "English": "Английский",
+    "Russian": "Русский",
+    "Select language": "Выбрать язык",
+    "Light": "Светлая",
+    "Dark": "Темная",
+    "System": "Системная",
+    "Login": "Login",
+    "Enter your username and password to log in": "Введите имя пользователя и пароль чтобы войти.",
+    "Username": "Имя пользователя",
+    "Password": "Пароль",
+    "Sign in": "Войти",
+    "Sign up": "Регистрация",
+    "Log out": "Выйти",
+    "Profile": "Профиль"
+  }
+}

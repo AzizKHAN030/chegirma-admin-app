@@ -1,0 +1,23 @@
+{
+  "Index": {
+    "Hello world": "Hello world",
+    "Settings": "Settings",
+    "Merchants": "Merchants",
+    "Dashboard": "Dashboard",
+    "Uzbek": "Uzbek",
+    "English": "English",
+    "Russian": "Russian",
+    "Select language": "Select language",
+    "Light": "Light",
+    "Dark": "Dark",
+    "System": "System",
+    "Login": "Login",
+    "Enter your username and password to log in": "Enter your username and password to log in.",
+    "Username": "Username",
+    "Password": "Password",
+    "Sign in": "Sign in",
+    "Sign up": "Sign up",
+    "Log out": "Log out",
+    "Profile": "Profile"
+  }
+}
