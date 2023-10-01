@@ -1,14 +1,15 @@
 'use client';
 
-import Link from 'next-intl/link';
-import { usePathname } from 'next-intl/client';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next-intl/client';
+import Link from 'next-intl/link';
 
+import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+
+import { LocaleSwitcher } from './locale-switcher';
 import { ModeToggler } from './mode-toggler';
 import { UserNav } from './user-nav';
-import { Separator } from '@/components/ui/separator';
-import { LocaleSwitcher } from './locale-switcher';
 
 type NavBarVariant = 'default' | 'base';
 

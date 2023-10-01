@@ -1,13 +1,15 @@
-import '../globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
-import { NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import { getServerSession } from 'next-auth/next';
+import { NextIntlClientProvider } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { Inter } from 'next/font/google';
+import { notFound } from 'next/navigation';
+
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { ThemeProvider } from '@/components/theme-provider';
 import AuthProvider from '@/context/auth-provider';
+
+import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

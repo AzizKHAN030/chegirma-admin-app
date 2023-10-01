@@ -1,25 +1,20 @@
 'use client';
 
 import * as React from 'react';
-import { useEffect, useContext } from 'react';
-import { Check, ChevronsUpDown } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next-intl/client';
+import { useEffect } from 'react';
 
-import { cn } from '@/lib/utils';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { usePathname, useRouter } from 'next-intl/client';
+
 import { Button } from '@/components/ui/button';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/components/ui/command';
+import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
 
 export function LocaleSwitcher() {
   const [open, setOpen] = React.useState(false);

@@ -12,12 +12,20 @@
     "Dark": "Qora",
     "System": "Sistema",
     "Login": "Login",
-    "Enter your username and password to log in": "Kirish uchun login va parolni kiriting.",
+    "Enter your email and password to log in": "Kirish uchun email va parolni kiriting.",
     "Username": "Login",
     "Password": "Parol",
     "Sign in": "Kirish",
     "Sign up": "Registratsiya",
     "Log out": "Chiqish",
-    "Profile": "Profil"
+    "Profile": "Profil",
+    "Email": "Email",
+    "Create an account": "Akkaunt yaratish",
+    "Create an account by entering email and password": "Email va parol kiritib akkaunt yarating",
+    "Please enter a valid email address": "To'gri email kiriting",
+    "Password must be at least {d} characters long": "Parol kamida {d} ta harifdat iborat bo'lishi kerak",
+    "Confirm Password": "Tastiqlash parol",
+    "Required": "Majburiy",
+    "Passwords do not match": "Parollar bir xil bo'lishi kerak"
   }
 }

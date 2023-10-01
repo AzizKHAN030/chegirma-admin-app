@@ -1,5 +1,10 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next-intl/client';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,15 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useSession } from 'next-auth/react';
-import { signOut } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next-intl/client';
 
-export function UserNav({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+export function UserNav({ className }: React.HTMLAttributes<HTMLElement>) {
   const { data } = useSession();
   const router = useRouter();
   const t = useTranslations('Index');

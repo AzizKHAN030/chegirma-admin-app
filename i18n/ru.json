@@ -12,12 +12,20 @@
     "Dark": "Темная",
     "System": "Системная",
     "Login": "Login",
-    "Enter your username and password to log in": "Введите имя пользователя и пароль чтобы войти.",
+    "Enter your email and password to log in": "Введите email пользователя и пароль чтобы войти.",
     "Username": "Имя пользователя",
     "Password": "Пароль",
     "Sign in": "Войти",
     "Sign up": "Регистрация",
     "Log out": "Выйти",
-    "Profile": "Профиль"
+    "Profile": "Профиль",
+    "Email": "Email",
+    "Create an account": "Создать аккаунт",
+    "Create an account by entering email and password": "Введите email и пароль чтобы создать аккаунт",
+    "Please enter a valid email address": "Введите пожалуйта правильный email",
+    "Password must be at least {d} characters long": "Пароль должен превышать {d} символов",
+    "Confirm Password":"Пароль подтверждения",
+    "Required": "Обязательное поле",
+    "Passwords do not match":"Пароли не совпадают"
   }
 }
