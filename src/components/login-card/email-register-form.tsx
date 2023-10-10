@@ -20,10 +20,10 @@ import { Input } from '@/components/ui/input';
 
 import PasswordInput from '../password-input';
 
-const RegisterForm = () => {
+const EmailRegisterForm = () => {
   const t = useTranslations('Index');
 
-  const registerFormSchema = z
+  const formSchema = z
     .object({
       email: z.string().email(t('Please enter a valid email address')),
       password: z
@@ -39,19 +39,19 @@ const RegisterForm = () => {
       message: t('Passwords do not match'),
       path: ['confirmPassword'],
     });
-  const registerForm = useForm<z.infer<typeof registerFormSchema>>({
-    resolver: zodResolver(registerFormSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
   });
 
-  const onRegister = async (values: z.infer<typeof registerFormSchema>) => {
+  const onRegister = async (values: z.infer<typeof formSchema>) => {
     console.log('>>>', values);
   };
 
   return (
-    <Form {...registerForm}>
-      <form onSubmit={registerForm.handleSubmit(onRegister)}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onRegister)}>
         <FormField
-          control={registerForm.control}
+          control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem className="mb-2">
@@ -64,7 +64,7 @@ const RegisterForm = () => {
           )}
         />
         <FormField
-          control={registerForm.control}
+          control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem className="mb-2">
@@ -77,7 +77,7 @@ const RegisterForm = () => {
           )}
         />
         <FormField
-          control={registerForm.control}
+          control={form.control}
           name="confirmPassword"
           render={({ field }) => (
             <FormItem className="mb-2">
@@ -95,4 +95,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default EmailRegisterForm;

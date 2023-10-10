@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { useTranslations } from 'next-intl';
 
 import {
@@ -9,14 +11,19 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 
-import LoginForm from './login-form';
-import RegisterForm from './register-form';
+import EmailLoginForm from './email-login-form';
+import EmailRegisterForm from './email-register-form';
+import PhoneLoginForm from './phonenumber-login-form';
+import PhoneRegisterForm from './phonenumber-register-form';
 
 export function LoginCard({ className }: React.HTMLAttributes<HTMLElement>) {
   const t = useTranslations('Index');
+  const [phoneLogin, setPhoneLogin] = useState(false);
+  const [phoneRegister, setPhoneRegister] = useState(false);
 
   return (
     <Tabs defaultValue="login" className={cn('w-[400px]', className)}>
@@ -31,9 +38,20 @@ export function LoginCard({ className }: React.HTMLAttributes<HTMLElement>) {
             <CardDescription>
               {t('Enter your email and password to log in')}
             </CardDescription>
+            <div className="height-[50px] w-full border rounded-lg p-4 flex justify-between">
+              <p className="text-sm text-muted-foreground">
+                Login with phone number
+              </p>
+              <Switch
+                checked={phoneLogin}
+                onCheckedChange={() => {
+                  setPhoneLogin(prevState => !prevState);
+                }}
+              />
+            </div>
           </CardHeader>
           <CardContent className="space-y-2">
-            <LoginForm />
+            {phoneLogin ? <PhoneLoginForm /> : <EmailLoginForm />}
           </CardContent>
         </Card>
       </TabsContent>
@@ -44,9 +62,20 @@ export function LoginCard({ className }: React.HTMLAttributes<HTMLElement>) {
             <CardDescription>
               {t('Create an account by entering email and password')}
             </CardDescription>
+            <div className="height-[50px] w-full border rounded-lg p-4 flex justify-between">
+              <p className="text-sm text-muted-foreground">
+                Register with phone number
+              </p>
+              <Switch
+                checked={phoneRegister}
+                onCheckedChange={() => {
+                  setPhoneRegister(prevState => !prevState);
+                }}
+              />
+            </div>
           </CardHeader>
           <CardContent className="space-y-2">
-            <RegisterForm />
+            {phoneRegister ? <PhoneRegisterForm /> : <EmailRegisterForm />}
           </CardContent>
         </Card>
       </TabsContent>

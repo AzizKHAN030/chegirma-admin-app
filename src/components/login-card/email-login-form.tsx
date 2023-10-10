@@ -21,22 +21,22 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-const LoginForm = () => {
+const EmailLoginForm = () => {
   const t = useTranslations('Index');
   const router = useRouter();
 
-  const loginFormSchema = z.object({
+  const formSchema = z.object({
     email: z.string().email(t('Please enter a valid email address')),
     password: z
       .string()
       .min(6, t('Password must be at least {d} characters long', { d: 6 })),
   });
 
-  const loginForm = useForm<z.infer<typeof loginFormSchema>>({
-    resolver: zodResolver(loginFormSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
   });
 
-  const onLogin = async (values: z.infer<typeof loginFormSchema>) => {
+  const onLogin = async (values: z.infer<typeof formSchema>) => {
     console.log('>>>', values);
 
     const res = await signIn('credentials', {
@@ -50,10 +50,10 @@ const LoginForm = () => {
   };
 
   return (
-    <Form {...loginForm}>
-      <form onSubmit={loginForm.handleSubmit(onLogin)}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onLogin)}>
         <FormField
-          control={loginForm.control}
+          control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem className="mb-2">
@@ -66,7 +66,7 @@ const LoginForm = () => {
           )}
         />
         <FormField
-          control={loginForm.control}
+          control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem className="mb-2">
@@ -84,4 +84,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default EmailLoginForm;
