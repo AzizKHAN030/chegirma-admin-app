@@ -26,6 +26,8 @@
     "Password must be at least {d} characters long": "Parol kamida {d} ta harifdat iborat bo'lishi kerak",
     "Confirm Password": "Tastiqlash parol",
     "Required": "Majburiy",
-    "Passwords do not match": "Parollar bir xil bo'lishi kerak"
+    "Passwords do not match": "Parollar bir xil bo'lishi kerak",
+    "Phone number":"Telefon raqamingiz",
+    "Register with phone number":"Telefon raqam orqali registratsiya"
   }
 }

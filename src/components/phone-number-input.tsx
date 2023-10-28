@@ -14,6 +14,7 @@ const PhoneNumberInput = (props: any) => {
     if (/^[0-9]*$/.test(typingData) || typingData === null) {
       setPhoneNumber(countryPrefix + input.substr(countryPrefix.length));
     }
+    formField.onChange(e);
   };
 
   return (

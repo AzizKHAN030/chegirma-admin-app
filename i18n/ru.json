@@ -26,6 +26,8 @@
     "Password must be at least {d} characters long": "Пароль должен превышать {d} символов",
     "Confirm Password":"Пароль подтверждения",
     "Required": "Обязательное поле",
-    "Passwords do not match":"Пароли не совпадают"
+    "Passwords do not match":"Пароли не совпадают",
+    "Phone number":"Номер телефона",
+    "Register with phone number":"Регистрация с помощью номера телефона"
   }
 }

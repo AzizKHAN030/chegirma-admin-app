@@ -26,6 +26,7 @@
     "Password must be at least {d} characters long": "Password must be at least {s} characters long",
     "Confirm Password": "Confirm Password",
     "Required":"Required",
-    "Passwords do not match":"Passwords do not match"
+    "Passwords do not match":"Passwords do not match",
+    "Phone number":"Phone number"
   }
 }

@@ -4,7 +4,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next-intl/client';
 import * as z from 'zod';
 
 import { Button } from '@/components/ui/button';
@@ -16,23 +18,30 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { useCustomerVerificationStore } from '@/store/customer-verification';
 
-import PasswordInput from '../password-input';
 import PhoneNumberInput from '../phone-number-input';
 
 const PhoneNumberRegisterForm = () => {
   const t = useTranslations('Index');
+  const router = useRouter();
+  const setVerificationSent = useCustomerVerificationStore(
+    state => state.setIsVerificationCodeSent
+  );
 
   const formSchema = z.object({
-    phonenumber: z.number().min(13).max(13, 'Invalid phone number'),
+    phonenumber: z.string().min(13).max(13, 'Invalid phone number'),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   const onRegister = async (values: z.infer<typeof formSchema>) => {
-    console.log('>>>', values);
+    const { phonenumber } = values;
+    Cookies.set('verify_phonenumber', phonenumber);
+    setVerificationSent(true);
+
+    router.push('/auth/verify');
   };
 
   return (

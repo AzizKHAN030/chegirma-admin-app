@@ -3,7 +3,12 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { NextRequest } from 'next/server';
 
 const locales = ['en', 'ru', 'uz'];
-const publicPages = ['/auth', '/en/api/auth/error', '/en/api/auth/providers'];
+const publicPages = [
+  '/auth',
+  '/en/api/auth/error',
+  '/en/api/auth/providers',
+  '/auth/verify',
+];
 
 const intlMiddleware = createIntlMiddleware({
   locales,
