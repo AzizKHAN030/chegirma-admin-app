@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
@@ -14,6 +14,7 @@ import {
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
+import { useCustomerVerification } from '@/store/customer-verification';
 
 import EmailLoginForm from './email-login-form';
 import EmailRegisterForm from './email-register-form';
@@ -22,8 +23,17 @@ import PhoneRegisterForm from './phonenumber-register-form';
 
 export function LoginCard({ className }: React.HTMLAttributes<HTMLElement>) {
   const t = useTranslations('Index');
+  const setVerificationSent = useCustomerVerification(
+    state => state.setIsVerificationCodeSent
+  );
+  const setPhoneNumber = useCustomerVerification(state => state.setPhoneNumber);
   const [phoneLogin, setPhoneLogin] = useState(false);
   const [phoneRegister, setPhoneRegister] = useState(false);
+
+  useEffect(() => {
+    setVerificationSent(false);
+    setPhoneNumber('');
+  }, []);
 
   return (
     <Tabs defaultValue="login" className={cn('w-[400px]', className)}>

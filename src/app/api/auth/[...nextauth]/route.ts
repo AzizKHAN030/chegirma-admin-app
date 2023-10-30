@@ -3,6 +3,8 @@ import NextAuth from 'next-auth';
 import type { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import axios from '@/core/axios';
+
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
@@ -12,6 +14,8 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
+        console.log('>>>', credentials);
+
         if (typeof credentials !== 'undefined') {
           //   const res = await authenticate(credentials.email, credentials.password)
           const res = {
@@ -34,6 +38,26 @@ export const authOptions: AuthOptions = {
         } else {
           return null;
         }
+      },
+    }),
+    CredentialsProvider({
+      id: 'phonenumber',
+      name: 'Phone Number',
+      async authorize(credentials, req) {
+        const { phonenumber, code } = credentials;
+        try {
+          const res = await axios.post('/auth/verify', {
+            verificationCode: code,
+          });
+          console.log('>>> 21', res);
+        } catch (error) {
+          console.log('>>> 21', error);
+        }
+
+        const user = {
+          /* add function to get user */
+        };
+        return user;
       },
     }),
   ],

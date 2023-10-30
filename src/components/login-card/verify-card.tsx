@@ -1,8 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
+import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next-intl/client';
+import Link from 'next-intl/link';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -16,7 +19,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { useCustomerVerificationStore } from '@/store/customer-verification';
+import { useCustomerVerification } from '@/store/customer-verification';
 import { formatTime } from '@/util/formatTime';
 
 import CounterProgressbar from '../counter-progressbar';
@@ -24,20 +27,48 @@ import CounterProgressbar from '../counter-progressbar';
 export function VerifyCard({ className }: React.HTMLAttributes<HTMLElement>) {
   const router = useRouter();
   const [counter, setCounter] = useState(0);
-  const isCustomerVerificationStore = useCustomerVerificationStore(
+  const [resetCounter, setResetCounter] = useState(false);
+  const [value, setValue] = useState('');
+
+  const isCustomerVerificationStore = useCustomerVerification(
     state => state.isVerificationCodeSent
   );
+  const phoneNumber = useCustomerVerification(state => state.phoneNumber);
 
-  if (!isCustomerVerificationStore) {
-    router.push('/auth/login');
+  if (!isCustomerVerificationStore || !phoneNumber) {
+    router.push('/auth');
   }
+
+  const resetProgressBar = () => {
+    setResetCounter(true);
+  };
 
   const onBackButtonClick = () => {
     router.back();
   };
 
+  const onVerify = async () => {
+    const res = await signIn('phonenumber', {
+      number: phoneNumber,
+      code: value,
+      redirect: false,
+    });
+
+    if (!res?.error) {
+      router.push('/');
+    }
+  };
+
+  const onResendClick = async () => {
+    try {
+      await axios.post('/auth/register', { username: phoneNumber });
+      resetProgressBar();
+    } catch (error) {}
+  };
+
   const handleCountChange = (count: number) => {
     setCounter(count);
+    setResetCounter(false);
   };
 
   return (
@@ -53,23 +84,35 @@ export function VerifyCard({ className }: React.HTMLAttributes<HTMLElement>) {
           <CounterProgressbar
             timerCount={60}
             onCountChange={handleCountChange}
+            reset={resetCounter}
             className="h-[7px] mb-4"
           />
-          <div className="flex justify-between">
+          <div className="flex justify-between mb-2">
             <p className="text-sm text-muted-foreground">
               Didn't receive the code? &nbsp;
-              <a href="#" className="text-primary">
+              <Link href="#" className="text-primary" onClick={onResendClick}>
                 Resend
-              </a>
+              </Link>
             </p>
             <span className="text-sm">{formatTime(counter)}</span>
           </div>
+          <p className="text-sm text-muted-foreground">
+            {phoneNumber} &nbsp;
+            <Link href="/auth" className="text-primary">
+              Change number
+            </Link>
+          </p>
         </div>
         <form>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Code</Label>
-              <Input id="name" placeholder="Verification code" />
+              <Input
+                id="name"
+                placeholder="Verification code"
+                value={value}
+                onChange={e => setValue(e.target.value)}
+              />
             </div>
           </div>
         </form>
@@ -78,7 +121,7 @@ export function VerifyCard({ className }: React.HTMLAttributes<HTMLElement>) {
         <Button variant="outline" onClick={onBackButtonClick}>
           Back
         </Button>
-        <Button>Verify</Button>
+        <Button onClick={onVerify}>Verify</Button>
       </CardFooter>
     </Card>
   );
